@@ -4,5 +4,5 @@ go 1.16
 
 require (
 	github.com/gin-gonic/gin v1.7.2
-	github.com/golangci/golangci-lint v1.39.0
+	github.com/golangci/golangci-lint v1.41.1
 )

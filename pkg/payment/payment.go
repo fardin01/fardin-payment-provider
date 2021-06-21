@@ -15,10 +15,7 @@ func shouldSucceed() bool {
 	// The current state of this function does not allow this app to be stateless, as the value of count is hold in memory.
 	// Therefore we cannot cluster this app. Make sure replicaCount is set to 1 until the app is made stateless.
 	count++
-	if count%2 != 0 {
-		return true
-	}
-	return false
+	return count%2 != 0
 }
 
 func Pay() Payment {

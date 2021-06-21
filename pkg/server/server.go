@@ -1,6 +1,7 @@
 package server
 
 import (
+	"fmt"
 	"github.com/fardin01/fardin-payment-provider/pkg/payment"
 	"github.com/gin-gonic/gin"
 	"time"
@@ -41,5 +42,9 @@ func Start() {
 		})
 	})
 
-	r.Run(":9000")
+	err := r.Run(":9000")
+
+	if err != nil {
+		fmt.Println("Could not start the server: ", err)
+	}
 }
