@@ -2,18 +2,13 @@
 replicaCount: 1
 
 image:
-  repository: fardin-payment-provider
+  repository: fardin01/fardin-payment-provider
   pullPolicy: IfNotPresent
   tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-
-serviceAccount:
-  create: true
-  annotations: {}
-  name: ""
 
 podAnnotations: {}
 
@@ -25,17 +20,6 @@ securityContext: {}
 service:
   type: ClusterIP
   port: 80
-
-ingress:
-  enabled: false
-  annotations: {}
-  hosts:
-    - host: chart-example.local
-      paths: []
-  tls: []
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
 
 resources:
    limits:

@@ -8,7 +8,12 @@ import (
 )
 
 func Start() {
-	r := gin.Default()
+	r := gin.New()
+	r.Use(
+		// Skipping logging requests on /readiness and /liveliness endpoints because it floods the log.
+		gin.LoggerWithWriter(gin.DefaultWriter, "/readiness", "/liveliness"),
+		gin.Recovery(),
+	)
 
 	r.GET("/", func(c *gin.Context) {
 		c.JSON(404, gin.H{

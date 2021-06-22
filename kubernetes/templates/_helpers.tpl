@@ -54,9 +54,5 @@ app.kubernetes.io/instance: {{ .Release.Name }}
 Create the name of the service account to use
 */}}
 {{- define "fardin-payment-provider.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "fardin-payment-provider.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
+{{- default "default" }}
 {{- end }}

@@ -3,13 +3,12 @@ package payment
 import (
 	"encoding/json"
 	"fmt"
-	"hash"
 )
 
 type Payment struct {
 	CustomerId int
 	Value float64
-	Currency hash.Hash
+	Currency map[string]string
 	Result bool
 	// I think putting the HTTP status code here is bad practice, as it's related to the underlying web server and has
 	// nothing to do with payments. But for the sake of this mock server, it's easier to put it here.
@@ -35,7 +34,7 @@ func Pay(invoice []byte) Payment {
 	err := json.Unmarshal(invoice, &payment)
 
 	if err != nil {
-		fmt.Printf("could not unmarshal invoice data: %v", err)
+		fmt.Printf("Failed to process the request: %v", err)
 		payment.Result = false
 		payment.StatusCode = 400
 		return payment
