@@ -1,0 +1,6 @@
+version: '3'
+services:
+  fardin-payment-provicer:
+    build: .
+    ports:
+      - "9000:9000"

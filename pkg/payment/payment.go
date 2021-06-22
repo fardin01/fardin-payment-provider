@@ -36,6 +36,9 @@ func Pay(invoice []byte) Payment {
 
 	if err != nil {
 		fmt.Printf("could not unmarshal invoice data: %v", err)
+		payment.Result = false
+		payment.StatusCode = 400
+		return payment
 	}
 
 	fmt.Println("Attempting to pay invoice: ", string(invoice))
