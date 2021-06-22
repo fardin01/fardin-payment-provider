@@ -27,5 +27,17 @@ need to run `docker-compose up --build` so that a new image is built with your n
 ## Deploying
 
 ### Bash script
+This project comes with a `deploy.sh` script that can take of the deployment for you. It's not ideal and in my opinion not
+suitable for production. Similar to the rest of this project, the script is a MVP just to get this microservice up and running
+quickly.
+
+The script will get the active/current kubectl context and will attempt to deploy to the active/current context/cluster.
+So make sure to choose the correct context before executing the script (by running `./deploy.sh`).
+
+It will also validate whether you have the needed tools installed (`kubectl`, `helm`, `jq`).
 
 ### Helm 3
+If for any reason you do not want to use the script to deploy, you can simply run `helm upgrade --install <helm release name> kubernetes/`.
+The `kubectl` context still has to be correct.
+
+Make sure you are using Helm 3, because we do not want to deal with installing and maintaining Tiller.
