@@ -17,11 +17,11 @@ func Start() {
 	})
 
 	r.GET("/readiness", func(c *gin.Context) {
-		// Pretending that it takes 10 seconds for the app to start and to be ready to server requests.
+		// Pretending that it takes 5 seconds for the app to start and to be ready to server requests.
 		// In production, this should fail if code/app is not ready e.g. if it fails to connect to a database or a dependency.
-		time.Sleep(10 * time.Second)
+		time.Sleep(5 * time.Second)
 		c.JSON(200, gin.H{
-			"message": "Ready",
+			"message": "ok",
 		})
 	})
 
@@ -36,7 +36,12 @@ func Start() {
 		// payInvoices function in Antaeus calls this endpoint in a loop, which can very easily overload this server and
 		// cause it to crash/suffer performance issues (not scalable). In production, This payment provider server should
 		// offer a batch pay API, so Antaeus can pay n invoices with one API call.
-		s := payment.Pay()
+		invoice, err := c.GetRawData()
+		if err != nil {
+			fmt.Println("Could not get request body: ", err)
+			return
+		}
+		s := payment.Pay(invoice)
 		c.JSON(s.StatusCode, gin.H{
 			"result": s.Result,
 		})
