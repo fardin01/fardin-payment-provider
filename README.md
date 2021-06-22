@@ -18,11 +18,11 @@ a Docker container locally and calling the API. See the `Building` section below
 
 ## Building
 A Docker image can be built locally by running `docker build .` in the root dir of this project. It will download all the 
-dependencies, lint and finally compile the code.
+dependencies, lint and finally compile the code. A container can be run using `docker run --rm -p 9000:9000 <sha256 hash>`
 
 A Docker compose file is also provided. It can be run by `docker-compose up` and you will get a container up and running 
 with port `9000` exposed so you can call `localhost:9000/` to test the APIs. If you make changes to the code base, you might
-need to run `docker-compose up --build` so that a new image is built with your new changes.
+need to run `docker-compose up --build` so that a new image is built with your new changes in it.
 
 ## Deploying
 
