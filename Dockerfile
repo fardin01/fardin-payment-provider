@@ -16,4 +16,6 @@ MAINTAINER Fardin Khanjani <khanjani.fardin@gmail.com>
 
 COPY --from=builder /app/bin/fardin-payment-provider /fardin-payment-provider
 
+EXPOSE 9000
+
 CMD ["/fardin-payment-provider"]
